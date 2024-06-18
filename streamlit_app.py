@@ -55,5 +55,5 @@ elif mode == "About":
     if st.button("Selected variables: "):
         st.write(df.columns[2:])
     if st.button("All available variables: "):
-        all_vars = pd.read_excel("data/all_variables_cleaned.xlsx")["description"]
+        all_vars = pd.read_excel("data/all_variables_clean.xlsx")["description"]
         st.write(all_vars)
