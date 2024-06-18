@@ -23,9 +23,10 @@ if mode == "District Mode":
     district = st.selectbox("Select District", df["District"].unique())
     district_df = rank_district_df(district)
     st.header(f"{district} Report, All Variables")
+    st.write("Represented by", df[df["District"] == district]["REPRESENTATIVE"].values[0], "(", df[df["District"] == district]["PARTY"].values[0], ")")
     st.write(district_df)
-    variable1 = st.selectbox("Select Variable 1", df.columns[1:])
-    variable2 = st.selectbox("Select Variable 2", df.columns[1:])
+    variable1 = st.selectbox("Select Variable 1", df.columns[3:])
+    variable2 = st.selectbox("Select Variable 2", df.columns[3:])
     
     if st.button("Run Selected Variables"):
         st.header(f"Selected Variables for {district}")
@@ -38,7 +39,7 @@ if mode == "District Mode":
         
 if mode == "Variable Mode":
     st.header("Rank Congressional Districts by Variable")
-    variable = st.selectbox("Select Variable (or start typing)", df.columns[2:])
+    variable = st.selectbox("Select Variable (or start typing)", df.columns[3:])
     
     if st.button("Rank by Variable"):
         st.header(f"{variable}")
@@ -53,7 +54,7 @@ elif mode == "About":
         st.write(df[df["REPRESENTATIVE"].isnull()]["District"])
     st.write("The IRS has 167 variables for each district. The variables available in this app have been selected for their relevance.")
     if st.button("Selected variables: "):
-        st.write(df.columns[2:])
+        st.write(df.columns[3:])
     if st.button("All available variables: "):
         all_vars = pd.read_excel("data/all_variables_clean.xlsx")["description"]
         st.write(all_vars)
