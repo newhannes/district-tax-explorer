@@ -1,5 +1,14 @@
 ### --- Helper Functions --- ###
-df = ""
+import plotly.graph_objects as go
+import pandas as pd
+import streamlit as st
+df = pd.read_excel("data/all_agi_mikevars_mems.xlsx")
+hunter = "#002829"
+emerald = "#004647"
+jade = "#84AE95"
+pearl = "#D6E5DC"
+gold = "#967D4A"
+
 ## Helper Functions ##
 def rank_district_df(district):
     district_df = df[df["District"] == district].drop(columns=["District", "REPRESENTATIVE", "PARTY"]).T
