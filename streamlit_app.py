@@ -50,7 +50,7 @@ elif mode == "About":
     st.write("Data are based on the individual income tax returns processed by the IRS during the 2022 calendar year (tax year 2021). The districts are for the 177th Congress. Amounts (not numbers) are in thousands of dollars.")
     st.write("The representative listed is the current (118th Congress) representative. Between redistricting and vacancies, 13 districts do not have a representative in the data.")
     if st.button("Districts without a representative: "):
-        st.write(df[df["Representative"].isnull()]["District"])
+        st.write(df[df["REPRESENTATIVE"].isnull()]["District"])
     st.write("The IRS has 167 variables for each district. The variables available in this app have been selected for their relevance.")
     if st.button("Selected variables: "):
         st.write(df.columns[2:])
