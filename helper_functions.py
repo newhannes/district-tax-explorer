@@ -10,6 +10,8 @@ pearl = "#D6E5DC"
 gold = "#967D4A"
 
 ## Helper Functions ##
+def ordinaltg(n):
+  return str(n) + {1: 'st', 2: 'nd', 3: 'rd'}.get(4 if 10 <= n % 100 < 20 else n % 10, "th")
 def rank_district_df(district):
     district_df = df[df["District"] == district].drop(columns=["District", "REPRESENTATIVE", "PARTY"]).T
     district_df.columns = ["Value"]
@@ -20,7 +22,7 @@ def rank_district_df(district):
         rank = ranked_df[ranked_df['District'] == district].index[0] + 1 # Find the rank of the specified district
         ranks.append(rank)
     district_df["Rank"] = ranks
-    district_df["Percentile"] = [f"{round(100-(rank/len(df))*100)}%" for rank in ranks]
+    district_df["Percentile"] = [ordinaltg(round(100-(rank/len(df))*100)) for rank in ranks]
     district_df = district_df.sort_values(by="Rank", ascending=True).drop(columns="Variable")
     return district_df[["Rank", "Percentile", "Value"]]
 

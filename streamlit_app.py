@@ -2,7 +2,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
-from helper_functions import rank_district_df, rank_district, plot_district, ranked_by_variable
+from helper_functions import rank_district_df, rank_district, plot_district, ranked_by_variable, ordinaltg
 hunter = "#002829"
 emerald = "#004647"
 jade = "#84AE95"
