@@ -2,7 +2,7 @@
 df = ""
 ## Helper Functions ##
 def rank_district_df(district):
-    district_df = df[df["District"] == district].drop(columns="District").T
+    district_df = df[df["District"] == district].drop(columns=["District", "REPRESENTATIVE", "PARTY"]).T
     district_df.columns = ["Value"]
     district_df["Variable"] = district_df.index
     ranks = []
