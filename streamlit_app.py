@@ -25,11 +25,10 @@ if mode == "District Mode":
     st.header(f"{district} Report, All Variables")
     st.write("Represented by", df[df["District"] == district]["REPRESENTATIVE"].values[0], "(", df[df["District"] == district]["PARTY"].values[0], ")")
     st.write(district_df)
+    st.header(f"Selected Variables for {district}")
     variable1 = st.selectbox("Select Variable 1", df.columns[3:])
     variable2 = st.selectbox("Select Variable 2", df.columns[3:])
-    
     if st.button("Run Selected Variables"):
-        st.header(f"Selected Variables for {district}")
         st.subheader(f"{variable1}")
         rank_district(district, variable1)
         plot_district(district, variable1)
