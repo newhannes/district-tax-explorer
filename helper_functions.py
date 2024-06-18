@@ -75,5 +75,5 @@ def plot_district(district, variable):
     return st.plotly_chart(fig)
 
 def ranked_by_variable(variable):
-    ranked_df = df[["District", variable]].sort_values(by=variable, ascending=False).reset_index(drop=True) # Create a new DataFrame that ranks each district based on the variable
+    ranked_df = df[["District", "REPRESENTATIVE", "PARTY", variable]].sort_values(by=variable, ascending=False).reset_index(drop=True) # Create a new DataFrame that ranks each district based on the variable
     return ranked_df
