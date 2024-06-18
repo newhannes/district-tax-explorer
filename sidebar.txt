@@ -1,0 +1,37 @@
+mode = st.sidebar.selectbox("Select Mode", ["District Mode", "Variable Mode", "About"])
+
+if mode == "District Mode":
+    district = st.sidebar.selectbox("Select District", df["District"].unique())
+    district_df = rank_district_df(district)
+    st.header(f"{district} Report, All Variables")
+    st.write(district_df)
+    variable1 = st.sidebar.selectbox("Select Variable 1", df.columns[1:])
+    variable2 = st.sidebar.selectbox("Select Variable 2", df.columns[1:])
+    
+    # if st.sidebar.button("District Summary"):
+    #     st.header(f"{district}")
+    #     st.write(district_df)
+    if st.sidebar.button("Run Selected Variables"):
+        st.header(f"Selected Variables for {district}")
+        st.subheader(f"{variable1}")
+        rank_district(district, variable1)
+        plot_district(district, variable1)
+        st.subheader(f"{variable2}")
+        rank_district(district, variable2)
+        plot_district(district, variable2)
+        
+if mode == "Variable Mode":
+    st.header("Rank Congressional Districts by Variable")
+    variable = st.sidebar.selectbox("Select Variable (or start typing)", df.columns[1:])
+    
+    if st.sidebar.button("Rank by Variable"):
+        st.header(f"{variable}")
+        ranked_df = ranked_by_variable(variable)
+        st.write(ranked_df)
+
+elif mode == "About":
+    st.header("About")
+    st.write("Data are based on the individual income tax returns processed by the IRS during the 2022 calendar year (tax year 2021). The districts are for the 177th Congress. Amounts (not numbers) are in thousands of dollars.")
+    st.write("The IRS has 167 variables for each district. The variables available in this app have been selected for their relevance.")
+    st.write("Available variables: ")
+    st.write(df.columns[1:])
